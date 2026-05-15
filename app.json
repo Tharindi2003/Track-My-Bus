@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Track My Bus",
+    "slug": "track-my-bus",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1A3C5E"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.trackmybus.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Track My Bus needs your location to show bus position.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Track My Bus needs background location for live tracking.",
+        "NSLocationAlwaysUsageDescription": "Track My Bus uses background location for live tracking."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1A3C5E"
+      },
+      "package": "com.trackmybus.app",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Track My Bus needs your location."
+        }
+      ]
+    ]
+  }
+}
