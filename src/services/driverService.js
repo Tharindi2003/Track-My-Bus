@@ -8,7 +8,7 @@ export async function getAllDrivers() {
   const snap = await get(ref(db, 'bus_drivers'));
   if (!snap.exists()) return [];
   const drivers = [];
-  snap.forEach((child) => drivers.push({ id: child.key, ...child.val() }));
+  snap.forEach((child) => { drivers.push({ id: child.key, ...child.val() }); });
   return drivers;
 }
 
@@ -16,7 +16,7 @@ export function subscribeToDrivers(callback) {
   const r = ref(db, 'bus_drivers');
   onValue(r, (snap) => {
     const drivers = [];
-    snap.forEach((child) => drivers.push({ id: child.key, ...child.val() }));
+    snap.forEach((child) => { drivers.push({ id: child.key, ...child.val() }); });
     callback(drivers);
   });
   return () => off(r);
@@ -50,7 +50,7 @@ export async function addDriver(data, email, password) {
     totalRatings: 0,
     userRatings: {},
     createdAt: Date.now(),
-    schoolLocation: data.schoolLocation || { latitude: 6.9271, longitude: 79.8612 },
+    schoolLocation: data.schoolLocation || { latitude: 6.9030, longitude: 79.8695 },
   });
 
   // 3. Save to users table so driver can log in

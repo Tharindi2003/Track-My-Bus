@@ -10,7 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#1A3C5E"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.trackmybus.app",
@@ -42,7 +44,9 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Track My Bus needs your location."
         }
-      ]
+      ],
+      "expo-status-bar",
+      "expo-font"
     ]
   }
 }

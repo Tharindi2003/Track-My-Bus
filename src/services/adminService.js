@@ -19,7 +19,7 @@ export async function getAllUsers() {
   const snap = await get(ref(db, 'users'));
   if (!snap.exists()) return [];
   const users = [];
-  snap.forEach((child) => users.push({ id: child.key, ...child.val() }));
+  snap.forEach((child) => { users.push({ id: child.key, ...child.val() }); });
   return users;
 }
 
@@ -46,7 +46,14 @@ export async function updateUser(uid, data) {
   await update(ref(db, `users/${uid}`), data);
 }
 
+// The very first admin account — protected from deletion by anyone.
+const SUPER_ADMIN_EMAIL = 'admin@gmail.com';
+
 export async function deleteUserProfile(uid) {
+  const snap = await get(ref(db, `users/${uid}`));
+  if (snap.exists() && snap.val().email === SUPER_ADMIN_EMAIL) {
+    throw new Error('The Super Admin account cannot be removed.');
+  }
   await remove(ref(db, `users/${uid}`));
 }
 

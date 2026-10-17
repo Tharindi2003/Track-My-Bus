@@ -20,16 +20,15 @@ export default function AdminDashboard({ navigation }) {
   useEffect(() => { load(); }, []);
 
   const tiles = [
-    { icon: 'shield-checkmark', label: 'Admins', value: stats.admins, color: COLORS.adminColor, tab: 'Users' },
-    { icon: 'bus', label: 'Bus Drivers', value: stats.busDrivers, color: COLORS.driverColor, tab: 'Drivers' },
-    { icon: 'people', label: 'Parents', value: stats.parents, color: COLORS.parentColor, tab: 'Users' },
+    { icon: 'shield-checkmark', label: 'Admins', value: stats.admins, color: COLORS.adminColor, tab: 'Users', params: { screen: 'ManageAdmins' } },
+    { icon: 'bus', label: 'Bus Drivers', value: stats.busDrivers, color: COLORS.driverColor, tab: 'Drivers', params: { screen: 'ManageDrivers' } },
+    { icon: 'people', label: 'Parents', value: stats.parents, color: COLORS.parentColor, tab: 'Users', params: { screen: 'ManageParents' } },
   ];
 
   const actions = [
-    { icon: 'person-add', label: 'Add Driver', color: COLORS.driverColor, screen: 'Drivers' },
-    { icon: 'shield-checkmark', label: 'Add Admin', color: COLORS.adminColor, screen: 'Users' },
-    { icon: 'bus', label: 'Manage Buses', color: COLORS.secondary, screen: 'Drivers' },
-    { icon: 'people', label: 'View Parents', color: COLORS.parentColor, screen: 'Users' },
+    { icon: 'bus', label: 'Manage Drivers', color: COLORS.driverColor, screen: 'Drivers', params: { screen: 'ManageDrivers' } },
+    { icon: 'shield-checkmark', label: 'Manage Admins', color: COLORS.adminColor, screen: 'Users', params: { screen: 'ManageAdmins' } },
+    { icon: 'people', label: 'Manage Parents', color: COLORS.parentColor, screen: 'Users', params: { screen: 'ManageParents' } },
   ];
 
   return (
@@ -53,7 +52,7 @@ export default function AdminDashboard({ navigation }) {
       <View style={styles.statsRow}>
         {tiles.map(t => (
           <TouchableOpacity key={t.label} style={[styles.tile, { borderTopColor: t.color }]}
-            onPress={() => navigation.navigate(t.tab)}>
+            onPress={() => navigation.navigate(t.tab, t.params)}>
             <Ionicons name={t.icon} size={28} color={t.color} />
             <Text style={styles.tileValue}>{t.value}</Text>
             <Text style={styles.tileLabel}>{t.label}</Text>
@@ -66,7 +65,7 @@ export default function AdminDashboard({ navigation }) {
       <View style={styles.actionsGrid}>
         {actions.map(a => (
           <TouchableOpacity key={a.label} style={styles.actionCard}
-            onPress={() => navigation.navigate(a.screen)}>
+            onPress={() => navigation.navigate(a.screen, a.params)}>
             <View style={[styles.actionIcon, { backgroundColor: a.color + '22' }]}>
               <Ionicons name={a.icon} size={26} color={a.color} />
             </View>
